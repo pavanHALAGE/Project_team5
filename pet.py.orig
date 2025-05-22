@@ -25,9 +25,25 @@ class Expense(Base):
 
 
 
-
-
 <<<<<<< HEAD
+#DB CONNECT
+
+from sqlalchemy import create_engine
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
+
+DATABASE_URL = "sqlite:///./expenses.db"
+
+engine = create_engine(
+    DATABASE_URL, connect_args={"check_same_thread": False}
+)
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+
+Base = declarative_base()
+=======
+
+
+
 #QUARY OPERATION
 from sqlalchemy.orm import Session
 from models import user, expense
@@ -64,7 +80,7 @@ def create_expense(db: Session, expense_data: expense_schema.ExpenseCreate):
 
 def get_expenses_by_user(db: Session, user_id: int):
     return db.query(expense.Expense).filter(expense.Expense.user_id == user_id).all()
-=======
+
 #main 
 from db.database import SessionLocal, Base, engine
 from db import queries
@@ -105,5 +121,6 @@ def main():
 
 if __name__ == "__main__":
     main()
->>>>>>> d
+
+>>>>>>> c
 

@@ -25,7 +25,43 @@ class Expense(Base):
 
 
 
+
 <<<<<<< HEAD
+from pydantic import BaseModel, EmailStr
+
+class UserCreate(BaseModel):
+    username: str
+    email: EmailStr
+    password: str
+
+class UserOut(BaseModel):
+    id: int
+    username: str
+    email: EmailStr
+
+    class Config:
+        orm_mode = True
+from pydantic import BaseModel
+from datetime import date
+
+class ExpenseCreate(BaseModel):
+    amount: float
+    category: str
+    date: date
+    description: str
+    user_id: int
+
+class ExpenseOut(BaseModel):
+    id: int
+    amount: float
+    category: str
+    date: date
+    description: str
+    user_id: int
+
+    class Config:
+        orm_mode = True
+=======
 #DB CONNECT
 
 from sqlalchemy import create_engine
@@ -40,7 +76,6 @@ engine = create_engine(
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 Base = declarative_base()
-=======
 
 
 
@@ -122,5 +157,6 @@ def main():
 if __name__ == "__main__":
     main()
 
->>>>>>> c
+
+>>>>>>> b
 

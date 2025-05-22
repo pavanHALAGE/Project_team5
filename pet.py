@@ -21,3 +21,43 @@ class Expense(Base):
     description = Column(String(255))
     user_id = Column(Integer, ForeignKey('users.id'), nullable=False)
 
+
+
+
+
+
+from pydantic import BaseModel, EmailStr
+
+class UserCreate(BaseModel):
+    username: str
+    email: EmailStr
+    password: str
+
+class UserOut(BaseModel):
+    id: int
+    username: str
+    email: EmailStr
+
+    class Config:
+        orm_mode = True
+from pydantic import BaseModel
+from datetime import date
+
+class ExpenseCreate(BaseModel):
+    amount: float
+    category: str
+    date: date
+    description: str
+    user_id: int
+
+class ExpenseOut(BaseModel):
+    id: int
+    amount: float
+    category: str
+    date: date
+    description: str
+    user_id: int
+
+    class Config:
+        orm_mode = True
+

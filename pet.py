@@ -77,7 +77,7 @@ class ExpenseCreate(BaseModel):
     description: str
     user_id: int
 
-
+#good code
 
 
 class ExpenseOut(BaseModel):
